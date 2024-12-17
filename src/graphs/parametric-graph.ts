@@ -7,7 +7,7 @@ export type ParametricGraphFunction = (t: number) => number;
 /**
  * Defines a parametric graph with separate functions for x and y coordinates.
  */
-export class PolarGraph extends Graph {
+export class ParametricGraph extends Graph {
     readonly graphType = "parametric";
 
     constructor(name: string,
