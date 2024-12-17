@@ -9,13 +9,13 @@ A graphing library with support for cartesian, polar and parametric graphs.
 ## Quick Start
 
 ```javascript
-  const gc = document.createElement("graph-canvas");
-  gc.setAttribute("width", "200");
-  gc.setAttribute("height", "200");
-  document.append(gc);
+const gc = document.createElement("graph-canvas");
+gc.setAttribute("width", "200");
+gc.setAttribute("height", "200");
+document.append(gc);
 
-  const graph1 = new CartesianGraph("y=x+1", x => x + 1);
-  gc.addGraph(graph1);
+const graph1 = new CartesianGraph("y=x+1", x => x + 1);
+gc.addGraph(graph1);
 ```
 
 ## Graphs
@@ -25,26 +25,33 @@ You can draw cartesian, polar, parametric and data point graphs.
 Use the CartesianGraph class to create a cartesian graph.
 It requires a function that takes a single number as input and returns a number.
 
-    new CartesianGraph("y=x+1", x => x + 1);
+```javascript
+new CartesianGraph("y=x+1", x => x + 1);
+```
 
 ### Polar
 Use the PolarGraph class to create a polar graph.
 It requires a function that takes a single number as input and returns a number.
 
-    new PolarGraph("r=cos(t)", t => Math.cos(t));
+```javascript
+new PolarGraph("r=cos(t)", t => Math.cos(t));
+```
 
 ### Parametric
 Use the ParametricGraph class to create a parametric graph.
 It requires two functions that takes a single number as input and returns a number.
 
-    new ParametricGraph("t+1,t^2", t => t + 1, t => Math.pow(t, 2));
+```javascript
+new ParametricGraph("t+1,t^2", t => t + 1, t => Math.pow(t, 2));
+```
 
 ### Data
 Use the DataGraph class to create a graph of a set of points.
 It requires an array of Point2D objects.
 
-    new DataGraph("myData", [{x:1,y:1}, {x:2,y:4}, {x:3,y:9}]);
-
+```javascript
+new DataGraph("myData", [{x:1,y:1}, {x:2,y:4}, {x:3,y:9}]);
+```
 
 ## GraphCanvas Web Component
 The GraphCanvas web component allows you to use a custom element in your HTML for drawing graphs.
@@ -56,20 +63,39 @@ The element has width and height attributes.
 
 To add a graph:
 
-    gc.addGraph(new CartesianGraph("y=x+1", x => x + 1));
+```javascript
+gc.addGraph(new CartesianGraph("y=x+1", x => x + 1));
+```
 
 To remove a graph
 
-    gc.removeGraph("y=x+1");
+```javascript
+gc.removeGraph("y=x+1");
+```
 
 Adding or removing a graph will cause the element to redraw.
+
+### Viewport
+You can change the viewport of the graph canvas by setting the viewport property.
+
+```javascript
+gc.viewport = {
+  ...gc.viewport,
+  minX: -2,
+  maxX: 2,
+  minY: -2,
+  maxY: 2
+};
+```
 
 ## GraphRenderer
 If you want to use your own canvas element you can use the GraphRenderer class to draw graphs on the canvas.
 
-    const gr = new GraphRenderer(myCanvas, getDefaultViewport());
-    const graphs = [new CartesianGraph("y=x+1", x => x + 1)];
-    gr.draw(graphs);
+```javascript
+const gr = new GraphRenderer(myCanvas, getDefaultViewport());
+const graphs = [new CartesianGraph("y=x+1", x => x + 1)];
+gr.draw(graphs);
+```
 
 ## Expression Iterators
 
