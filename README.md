@@ -2,6 +2,18 @@
 
 A graphing library with support for cartesian, polar and parametric graphs.
 
+## Quick Start
+
+```javascript
+  const gc = document.createElement("graph-canvas");
+  gc.setAttribute("width", "200");
+  gc.setAttribute("height", "200");
+  document.append(gc);
+
+  const graph1 = new CartesianGraph("y=x+1", x => x + 1);
+  gc.addGraph(graph1);
+```
+
 ## Graphs
 You can draw cartesian, polar, parametric and data point graphs.
 
@@ -48,9 +60,16 @@ To remove a graph
 
 Adding or removing a graph will cause the element to redraw.
 
+## GraphRenderer
+If you want to use your own canvas element you can use the GraphRenderer class to draw graphs on the canvas.
+
+    const gr = new GraphRenderer(myCanvas, getDefaultViewport());
+    const graphs = [new CartesianGraph("y=x+1", x => x + 1)];
+    gr.draw(graphs);
+
 ## Expression Iterators
 
-Iterators for generating 2D points for functional, polar or parametric expressions.
+There are Iterators for generating 2D points for functions.
 
 ```typescript
 const range: IteratorRange = {
@@ -58,7 +77,7 @@ const range: IteratorRange = {
     max: 3,
     step: 1
 };
-const it = new FunctionalIterator(x => x, range);
+const it = new CartesianIterator(x => x + 1, range);
 for (const point of it) {
     console.log(point);
 }
