@@ -2,6 +2,10 @@
 
 A graphing library with support for cartesian, polar and parametric graphs.
 
+## Install
+
+    npm i https://github.com/jodymgustafson/math-graph-canvas/releases/download/v1.0.0/math-graph-canvas-1.0.0.tgz
+
 ## Quick Start
 
 ```javascript
