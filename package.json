@@ -1,0 +1,20 @@
+{
+  "name": "math-graph-canvas",
+  "version": "1.0.0",
+  "description": "A graphing library with support for cartesian, polar and parametric graphs.",
+  "main": "index.js",
+  "author": "JM Gustafson",
+  "scripts": {
+    "test": "jasmine",
+    "clean": "clean.bat"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jasmine": "^3.10.3",
+    "jasmine": "^4.0.2",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "canvas-context-2d": "^1.0.2"
+  }
+}
