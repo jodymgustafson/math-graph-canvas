@@ -8,9 +8,9 @@ import { Graph } from "./graphs/graph";
 export class GraphCanvas extends HTMLElement {
     static observedAttributes = ["width", "height"];
 
+    readonly canvas: HTMLCanvasElement;
     readonly graphs: Graph[] = [];
     protected renderer?: GraphRenderer;
-    protected readonly canvas: HTMLCanvasElement;
 
     get viewport(): GraphViewport {
         return this.renderer!.viewport;
@@ -20,9 +20,17 @@ export class GraphCanvas extends HTMLElement {
         this.renderer = new GraphRenderer(this.canvas, vp);
     }
 
+    /** A callback function to be called before drawing starts */
+    beforeDraw?: () => void;
+
+    /** A callback function to be called after drawing finishes */
+    afterDraw?: () => void;
+
     constructor() {
         super();
         this.canvas = document.createElement('canvas');
+        // Removes padding from bottom so canvas takes up entire area
+        this.style.display = 'inline-flex';
     }
 
     addGraph(g: Graph): GraphCanvas {
@@ -38,7 +46,9 @@ export class GraphCanvas extends HTMLElement {
 
     draw(): void {
         requestAnimationFrame(() => {
+            this.beforeDraw?.();
             this.renderer!.draw(this.graphs);
+            this.afterDraw?.();
         });
     }
 
